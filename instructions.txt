@@ -1,0 +1,23 @@
+------------------------------------------------------------------------- To Run ---------------------------------------------------------------------------------------------------
+
+| compiler | output format | source file | object file |
+   nasm       -f elf64         01.asm       -o out.o                # assemble
+
+
+| linker | machine architecture | output file | input file |
+   ld         -m elf_i386           -o out       out.o              # link (no libc)
+
+./out                                                               # to run
+
+echo $?                                                             # verify exitcode
+
+
+------------------------------------------------------------------------- To Debug ---------------------------------------------------------------------------------------------------
+| debugger | exicutable file |
+    gdb         out            # starts debugging
+
+inside debugger :
+    layout asm                 # takes into assembly debugging layout
+    breakpoint []              # to insert a breakpoint in code
+    stepi                      # move one instruction forward
+    info registers []          # displays information in the register
