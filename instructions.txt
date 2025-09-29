@@ -1,11 +1,13 @@
 ------------------------------------------------------------------------- To Run ---------------------------------------------------------------------------------------------------
 
 | compiler | output format | source file | object file |
-   nasm       -f elf64         01.asm       -o out.o                # assemble
+   nasm       -f elf64         basics.asm    -o out.o                # assemble
 
 
-| linker | machine architecture | output file | input file |
+| linker | machine architecture* | output file | input file |
    ld         -m elf_i386           -o out       out.o              # link (no libc)
+
+* machine architecture is not needed, without it it will compile in defauly system architecture
 
 ./out                                                               # to run
 
@@ -18,6 +20,14 @@ echo $?                                                             # verify exi
 
 inside debugger :
     layout asm                 # takes into assembly debugging layout
-    breakpoint []              # to insert a breakpoint in code
+    break []                   # to insert a breakpoint in code
+    run                        # starts the program
     stepi                      # move one instruction forward
     info registers []          # displays information in the register
+    x/x []                     # shows value with the address
+
+------ run in one go------
+nasm -f elf64 03_basics.asm -o out.o
+ld -o out out.o
+./out
+echo $?
