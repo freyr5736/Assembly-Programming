@@ -27,7 +27,7 @@ inside debugger :
     x/x []                     # shows value with the address
 
 ------ run in one go------
-nasm -f elf64 03_basics.asm -o out.o
+nasm -f elf64 _basics.asm -o out.o
 ld -o out out.o
 ./out
 echo $?
